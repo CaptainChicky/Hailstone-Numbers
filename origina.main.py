@@ -1,7 +1,7 @@
 import matplotlib as mpl 
 mpl.use('Agg')
 import matplotlib.pyplot as plt 
-n = 6171
+n = 97
 plt.xlabel('Number of iterations')
 plt.ylabel('Number value')
 plt.title('Hailstone numbers: number %i' % n)
@@ -48,4 +48,4 @@ plt.tight_layout()
 dpi = 500
 plt.subplots_adjust(left=0.15, bottom=0.1)
 
-plt.savefig('graph.png', dpi=dpi)
+plt.savefig('graph-single.png', dpi=dpi)
