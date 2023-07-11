@@ -132,7 +132,7 @@ def plotall():
         plt.xlim(right=1.01 * max(maxlist[0]))
         if height != 0:
             plt.ylim(top=height)
-            plt.ylim(bottom=1-0.0075 * max(maxlist[1]))
+            plt.ylim(bottom=1-0.0075 * height)
         else:
             plt.ylim(bottom=1-0.0075 * max(maxlist[1]))
             plt.ylim(top=1.02 * max(maxlist[1]))

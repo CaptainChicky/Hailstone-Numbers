@@ -123,6 +123,7 @@ def plotall():
         plt.xlim(right=x_max + x_margin)
         if height != 0:
             plt.ylim(top=height)
+            y_margin = 0.03 * (height - y_min)
             plt.ylim(bottom=y_min - y_margin)
         else:
             plt.ylim(bottom=y_min - y_margin)
