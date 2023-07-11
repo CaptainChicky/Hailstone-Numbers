@@ -153,13 +153,13 @@ Say we want a regular plot of the maximum height of hailstone sequences for all 
 
     python main.py -d maxHeight -v reg -l 2 -p "list(range(1, 10001))"
 
-If we want to plot a single hailstone sequence for the seed value 27, with log scaling on the y axis, we would do
+If we want to plot a single hailstone sequence for the seed value 97, with log scaling on the y axis, we would do
 
-    python main.py -d hailstone -v single -l 1 -p "27"
+    python main.py -d hailstone -v single -l 1 -p "97"
 
 Plotting the same thing as above but with the logarithm plot's linear regression slope subtracted from it is simply done by
 
-    python main.py -d hailstone -v single -l 3 -p "27"
+    python main.py -d hailstone -v single -l 3 -p "97"
 
 Comparing the hailstone sequences of "27" and "97" with regular scaling can be done with the following command
 
