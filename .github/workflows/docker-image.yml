@@ -7,27 +7,28 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
       uses: actions/checkout@v3
       with:
-          sparse-checkout: | 
-              requirements.txt
-              Dockerfile
-              main.py
-              LICENSE
-              .gitignore
-              driver/
-          sparse-checkout-cone-mode: false
-      
+        sparse-checkout: | 
+          requirements.txt
+          Dockerfile
+          main.py
+          LICENSE
+          .gitignore
+          driver/
+        sparse-checkout-cone-mode: false
+
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag hailstone-numbers:v1.0
-      
+
+    - name: Save Docker image as tar file
+      run: docker save hailstone-numbers:v1.0 > hailstone-numbers.tar
+
     - name: Create GitHub release
       id: create_release
       uses: actions/create-release@v1
@@ -41,6 +42,6 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          hailstone-numbers:v1.0
+          hailstone-numbers.tar
         token: ${{ secrets.GITHUB_TOKEN }}
         tag_name: v1.0
