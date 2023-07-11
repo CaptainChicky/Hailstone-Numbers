@@ -1,0 +1,35 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+          sparse-checkout: | 
+              requirements.txt
+              main.py
+              LICENSE
+              .gitignore
+              driver/
+          sparse-checkout-cone-mode: false
+    
+    - name: Install Python dependencies
+      run: pip install -r requirements.txt
+      
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag Hailstone-Numbers:v1.0
+      
+    - name: Push to Releases
+      run: | # update this for every major docker image release/update lmao
+          docker push CaptainChicky/Hailstone-Numbers:v1.0
