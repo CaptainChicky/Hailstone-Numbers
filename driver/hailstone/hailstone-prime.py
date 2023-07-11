@@ -38,14 +38,15 @@ maxlist = [[], []]
 plotlist = []
 
 isLog = 0
-
+height = 0
 
 # Create the argument parser
 parser = argparse.ArgumentParser(description='Driver Program')
 
 # Add an optional option for the plot argument
-parser.add_argument('-p', '--plot', help='List of values for plotting', default='list(range(2, 28))')
-parser.add_argument('-l', '--log', help='Log axis scaling, 0 for non, 1 for y axis, 2 for both', default=2, type=int)
+parser.add_argument('-p', '--plot', help='List of values for plotting', default='list(range(1, 101))')
+parser.add_argument('-l', '--log', help='Log axis scaling, 0 for non, 1 for y axis, 2 for both', default=0, type=int)
+parser.add_argument('-ht', '--height', help='Specify the height of a graph', default=0, type=int)
 
 # Parse the command-line arguments
 args = parser.parse_args()
@@ -53,7 +54,7 @@ args = parser.parse_args()
 # Parse the plot argument into a list
 plotlist = eval(args.plot)
 isLog = args.log
-
+height = args.height
 
 
 PLlength = len(plotlist)
@@ -129,8 +130,12 @@ def plotall():
     else:
         plt.xlim(left=-0.0053 * max(maxlist[0]))
         plt.xlim(right=1.01 * max(maxlist[0]))
-        plt.ylim(bottom=1-0.0075 * max(maxlist[1]))
-        plt.ylim(top=1.02 * max(maxlist[1]))
+        if height != 0:
+            plt.ylim(top=height)
+            plt.ylim(bottom=1-0.0075 * max(maxlist[1]))
+        else:
+            plt.ylim(bottom=1-0.0075 * max(maxlist[1]))
+            plt.ylim(top=1.02 * max(maxlist[1]))
 
 
 plotall()

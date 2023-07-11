@@ -32,13 +32,15 @@ def get_cmap(n, name='hsv'):
 
 
 isLog = 0
+height = 0
 
 # Create the argument parser
 parser = argparse.ArgumentParser(description='Driver Program')
 
 # Add an optional option for the plot argument
 parser.add_argument('-p', '--plot', help='List of values for plotting', default='list(range(1, 101))')
-parser.add_argument('-l', '--log', help='Log axis scaling, 0 for non, 1 for y axis, 2 for both, 3 for 1 but linear scaling removed', default=0, type=int)
+parser.add_argument('-l', '--log', help='Log axis scaling, 0 for non, 1 for y axis, 2 for both', default=0, type=int)
+parser.add_argument('-ht', '--height', help='Specify the height of a graph', default=0, type=int)
 
 # Parse the command-line arguments
 args = parser.parse_args()
@@ -46,6 +48,7 @@ args = parser.parse_args()
 # Parse the plot argument into a list
 n = eval(args.plot)
 isLog = args.log
+height = args.height
 
 # conut starts at 0 because the seed is not an iteration
 count = 0
@@ -141,8 +144,12 @@ elif isLog == 3:
 else:
     plt.xlim(left=-0.0053 * max(x))
     plt.xlim(right= 1.01 * max(x))
-    plt.ylim(bottom=1-0.0075 * max(y))
-    plt.ylim(top=1.02 * max(y))
+    if height != 0:
+        plt.ylim(top=height)
+        plt.ylim(bottom=1-0.0075 * height)
+    else:
+        plt.ylim(bottom=1-0.0075 * max(y))
+        plt.ylim(top=1.02 * max(y))
 
 txt="Made by Chicky"
 #first num is percent on x axis, second is y
