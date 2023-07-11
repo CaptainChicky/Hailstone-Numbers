@@ -26,11 +26,11 @@ jobs:
           sparse-checkout-cone-mode: false
       
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag hailstone-numbers:$(date +%s)
+      run: docker build . --file Dockerfile --tag hailstone-numbers:v1.0
       
     - name: Push to Releases
       run: | # update this for every major docker image release/update lmao
-          docker push captainchicky/hailstone-numbers:$(date +%s)
+          docker push captainchicky/hailstone-numbers:v1.0
 
           release_name = "Hailstone Numbers Docker Image"
           release_body = "Docker image for Hailstone Numbers, version 1.0 with all dependencies installed."
