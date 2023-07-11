@@ -1,31 +1,24 @@
-import subprocess
+import argparse
+import os
 
-ShouldProgramExit = False
+# Function to process and run the chosen driver program
+def process_driver(driver, version):
+    driver_path = f"drivers/{driver}/{driver}-{version}.py"
+    if os.path.exists(driver_path):
+        print(f"Running {driver}-{version}...")
+        os.system(f"python {driver_path}")
+    else:
+        print(f"Driver {driver}-{version} not found.")
 
-while not ShouldProgramExit:
-    print("Welcome!")
-    print("Choose which program you want to run:")
-    print("1. One Hailstone")
-    print("2. Multiple Hailstones")
-    print("3. Hailstone Lengths")
-    print("4. Hailstone Max Height")
-    
-    # Get the user's input
-    user_input = input("Enter your choice: ")
+# Create the argument parser
+parser = argparse.ArgumentParser(description="Driver Program Runner")
 
-    # Check if the user wants to exit
-    if user_input == "4":
-        ShouldProgramExit = True
-        break
+# Add options for driver and version
+parser.add_argument("driver", help="Choose the driver program")
+parser.add_argument("version", help="Choose the version of the driver program")
 
-    # Check if the user entered a valid choice
-    if user_input not in ["1", "2", "3"]:
-        print("Invalid choice!")
-        continue
+# Parse the command-line arguments
+args = parser.parse_args()
 
-
-    # Specify the path to the Python file you want to run
-    file_path = "/path/to/your/python/file.py"
-
-    # Run the Python file using subprocess
-    subprocess.run(["python", file_path])
+# Process the chosen driver program
+process_driver(args.driver, args.version)

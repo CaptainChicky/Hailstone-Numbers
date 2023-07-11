@@ -1,3 +1,5 @@
-add modes, like prime mode or rainbow color mode
+add modes, like prime mode, prime prioritization mode or rainbow color mode
 add log mode, and then remove linear trend (for graph of hailstone path)
-histagram
+
+I want to add a way to input values, so basically the plotlist=[] accepts whatever you put into a file that it can read
+basically you should be able to do something like list(range(a, b)), or [a, b, c] and be registered
