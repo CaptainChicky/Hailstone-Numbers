@@ -18,6 +18,7 @@ jobs:
       with:
           sparse-checkout: | 
               requirements.txt
+              Dockerfile
               main.py
               LICENSE
               .gitignore
