@@ -34,7 +34,7 @@ jobs:
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
+      with: # remember to update this on every release. also, manually add body content to the release after publish
         tag_name: v1.0
         release_name: Release v1.0
 
