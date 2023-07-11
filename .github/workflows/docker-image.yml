@@ -23,9 +23,6 @@ jobs:
               .gitignore
               driver/
           sparse-checkout-cone-mode: false
-    
-    - name: Install Python dependencies
-      run: pip install -r requirements.txt
       
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag hailstone-numbers:v1.0
