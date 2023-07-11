@@ -47,7 +47,7 @@ Currently, the project is run from the source python file, and it is a commandli
 
     python main.py
 
-There are 5 possible flags, with 3 being optional. 
+There are 5 possible flags, with 3 being optional, along with the help flag.
 
     Flag                                Description                                     Details
 
