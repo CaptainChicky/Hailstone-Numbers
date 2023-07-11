@@ -29,7 +29,7 @@ jobs:
     - name: Save Docker image as tar file
       run: docker save hailstone-numbers:v1.0 > hailstone-numbers.tar
 
-    - name: Create GitHub release
+    - name: Create GitHub release #  The `set-output` command is deprecated and will be disabled soon. Please upgrade to using Environment Files. For more information see: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
       id: create_release
       uses: actions/create-release@v1
       env:
