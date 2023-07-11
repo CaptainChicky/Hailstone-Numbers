@@ -28,12 +28,14 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag hailstone-numbers:v1.0
       
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Release
+      uses: softprops/action-gh-release@v1
       with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ./
-        asset_name: hailstone-numbers
-        asset_content_type: application/x-gzip
+        files: |
+          hailstone-numbers:v1.0
+        tag_name: ${{ github.sha }}
+        name: ${{ github.sha }}
+        body: ${{ github.sha }}
+        draft: false
+        prerelease: false
+        token: ${{ secrets.GITHUB_TOKEN }}
