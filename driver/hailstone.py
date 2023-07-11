@@ -1,7 +1,7 @@
 import matplotlib as mpl 
 mpl.use('Agg')
 import matplotlib.pyplot as plt 
-n = 97
+n = 27
 plt.xlabel('Number of iterations')
 plt.ylabel('Number value')
 plt.title('Hailstone numbers: number %i' % n)
@@ -11,6 +11,7 @@ def get_cmap(n, name='hsv'):
     RGB color; the keyword argument name must be a standard mpl colormap name.'''
     return plt.cm.get_cmap(name, n)
 
+# conut starts at 0 because the seed is not an iteration
 count = 0
 Arr = [[0],[n]]
 
@@ -36,7 +37,7 @@ for k in range(count + 1):
 
 plt.xlim(left=-0.0053 * max(x))
 plt.xlim(right= 1.01 * max(x))
-plt.ylim(bottom=-0.0053 * max(y))
+plt.ylim(bottom=1-0.0075 * max(y))
 plt.ylim(top=1.02 * max(y))
 
 txt="Made by Chicky"
