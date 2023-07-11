@@ -28,8 +28,8 @@ jobs:
       run: pip install -r requirements.txt
       
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag Hailstone-Numbers:v1.0
+      run: docker build . --file Dockerfile --tag hailstone-numbers:v1.0
       
     - name: Push to Releases
       run: | # update this for every major docker image release/update lmao
-          docker push CaptainChicky/Hailstone-Numbers:v1.0
+          docker push captainchicky/hailstone-numbers:v1.0
