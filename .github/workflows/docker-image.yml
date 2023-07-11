@@ -28,9 +28,19 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag hailstone-numbers:v1.0
       
-    - name: Upload Docker image to GitHub releases
+    - name: Create GitHub release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v1.0
+        release_name: Release v1.0
+
+    - name: Upload Docker image to GitHub release
       uses: softprops/action-gh-release@v1
       with:
         files: |
           hailstone-numbers:v1.0
         token: ${{ secrets.GITHUB_TOKEN }}
+        tag_name: v1.0
