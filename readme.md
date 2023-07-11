@@ -40,7 +40,7 @@ For python libraries, numpy, matplotlib, and scikit-learn are required. You can 
 
     pip install -r requirements.txt
 
-I will be building a docker image for this project soon, so the requirements shouldn't be a problem. Also, ig I could also try building an executable, but it will be tricky because of the way the project is structured. We shall see.
+There is a very very noobishly built docker image for this project, so the requirements shouldn't be a problem. Also, ig I could also try building an executable, but it will be tricky because of the way the project is structured. We shall see, but I probably won't try it. You are welcome to lmao.
 
 ## Usage
 Currently, the project is run from the source python file, and it is a commandline program. To begin, simply do
@@ -145,6 +145,15 @@ There are 5 possible flags, with 3 being optional, along with the help flag.
                                         Print the help message.                         description of any flags inputted with this command. 
                                                                                         If this flag is present, the program will not run. This 
                                                                                         flag is available on all drivers.
+
+
+    -t, --timeout                       Optional.                                       This is specifically here for the docker image. Becuase 
+                                        Timeout the script.                             the main.py file exits when run, the docker container 
+                                                                                        will exit as well. This flag is here to prevent that. 
+                                                                                        To use this properly, run the docker container first with
+                                                                                        this flag on some a terminal, which will timeout first
+                                                                                        instance of the script. This allows you to run additional
+                                                                                        instances of the script without the container exiting.
                                                                                                                    
 
 Hopefully that was clear enough. If not, I will provide some examples below.  

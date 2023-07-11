@@ -28,7 +28,8 @@ parser.add_argument("-v", "--version", help="Choose the version of the driver pr
 parser.add_argument('-p', '--plot', help='List of values for plotting', nargs='?')
 parser.add_argument('-l', '--log', help='Log axis scaling, 0 for non, 1 for y axis, 2 for both', nargs='?')
 parser.add_argument('-ht', '--height', help='Specify the height of a graph (does not affect log graphs)', nargs='?')
-
+# Add the timeout option
+parser.add_argument('-t', '--timeout', help='Timeout the script', action='store_true')
 
 # Parse the command-line arguments
 args = parser.parse_args()
@@ -36,6 +37,8 @@ args = parser.parse_args()
 # Process the chosen driver program
 process_driver(args.driver, args.version, args.plot, args.log, args.height)
 
-# Add the infinite loop to keep the script running
-while True:
-    time.sleep(1)  # Keep the script running indefinitely
+# Check if the timeout flag is provided
+if args.timeout:
+    # Add the infinite loop to keep the script running
+    while True:
+        time.sleep(1)  # Keep the script running indefinitely
