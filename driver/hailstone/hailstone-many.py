@@ -29,7 +29,7 @@ height = 0
 parser = argparse.ArgumentParser(description='Driver Program')
 
 # Add an optional option for the plot argument
-parser.add_argument('-p', '--plot', help='List of values for plotting', default='list(range(1, 101))')
+parser.add_argument('-p', '--plot', help='List of values for plotting', default='list(range(1, 27))')
 parser.add_argument('-l', '--log', help='Log axis scaling, 0 for non, 1 for y axis, 2 for both', default=0, type=int)
 parser.add_argument('-ht', '--height', help='Specify the height of a graph', default=0, type=int)
 
