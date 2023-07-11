@@ -30,4 +30,4 @@ jobs:
       
     - name: Push to Releases
       run: | # update this for every major docker image release/update lmao
-          docker push CaptainChicky/Hailstone-Numbers:v1.0
+          docker push CaptainChicky/hailstone-numbers:v1.0
