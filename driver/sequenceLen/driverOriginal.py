@@ -1,14 +1,9 @@
+# ORIGINAL, DO NOT MODIFY
+# OUTPUTS PHOTO TO CURRENT DIR
+
 import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
-import os
-import argparse
-
-# make choice to prioritize primes or not
-
-# Create a directory for saving figures if it doesn't exist
-output_directory = 'generated'
-os.makedirs(output_directory, exist_ok=True)
 
 plt.xlabel('Seed number')
 plt.ylabel('Number of iterations')
@@ -33,20 +28,6 @@ maxlist = []
 
 plotlist = list(range(1, 101))
 
-
-# Create the argument parser
-parser = argparse.ArgumentParser(description='Driver Program')
-
-# Add an optional option for the plotlist argument
-parser.add_argument('-p', '--plotlist', help='List of values for plotting', default='list(range(1, 11))')
-
-# Parse the command-line arguments
-args = parser.parse_args()
-
-# Parse the plotlist argument into a list
-plotlist = eval(args.plotlist)
-
-
 PLlength = len(plotlist)
 
 def PlotSeed(n, color):
@@ -63,6 +44,7 @@ def PlotSeed(n, color):
     maxlist.append(count)
     plt.plot(originalN, count, '.', color=color)
 
+# primes overlayed on top of non-primes
 def plotall():
     color = "blue"
     tmp = []
@@ -90,6 +72,7 @@ def plotall():
     plt.ylim(bottom=y_min - y_margin)
     plt.ylim(top=y_max + y_margin)
 
+
 plotall()
 
 txt = "Made by Chicky"
@@ -107,6 +90,4 @@ plt.tight_layout()
 dpi = 500
 plt.subplots_adjust(left=0.15, bottom=0.1)
 
-# Save the figure in the specified directory
-filename = os.path.join(output_directory, 'seedLen.png')
-plt.savefig(filename, dpi=dpi)
+plt.savefig("seedLen.png", dpi=dpi)
