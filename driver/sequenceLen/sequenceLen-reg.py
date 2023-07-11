@@ -2,6 +2,8 @@ import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 import os
+import argparse
+
 # make choice to prioritize primes or not
 
 # Create a directory for saving figures if it doesn't exist
@@ -29,7 +31,20 @@ def isPrime(n):
 
 maxlist = []
 
-plotlist = list(range(1, 1001))
+plotlist = list(range(1, 101))
+
+
+# Create the argument parser
+parser = argparse.ArgumentParser(description='Driver Program')
+
+# Add an optional option for the plotlist argument
+parser.add_argument('-p', '--plotlist', help='List of values for plotting', default='list(range(1, 11))')
+
+# Parse the command-line arguments
+args = parser.parse_args()
+
+# Parse the plotlist argument into a list
+plotlist = eval(args.plotlist)
 
 
 PLlength = len(plotlist)

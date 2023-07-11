@@ -1,7 +1,7 @@
 import matplotlib as mpl 
 mpl.use('Agg')
 import matplotlib.pyplot as plt 
-n = 27
+n = 97
 plt.xlabel('Number of iterations')
 plt.ylabel('Number value')
 plt.title('Hailstone numbers: number %i' % n)
