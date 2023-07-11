@@ -151,8 +151,8 @@ There are 5 possible flags, with 3 being optional, along with the help flag.
                                         Timeout the script.                             the main.py file exits when run, the docker container 
                                                                                         will exit as well. This flag is here to prevent that. 
                                                                                         To use this properly, run the docker container first with
-                                                                                        this flag on some a terminal, which will timeout first
-                                                                                        instance of the script. This allows you to run additional
+                                                                                        this flag on some external terminal, which will timeout the
+                                                                                        first instance of the script. This allows you to run additional
                                                                                         instances of the script without the container exiting.
                                                                                                                    
 
