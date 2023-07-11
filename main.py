@@ -1,4 +1,5 @@
 import argparse
+import time
 import os
 
 # Function to process and run the chosen driver program
@@ -17,7 +18,6 @@ def process_driver(driver, version, plot=None, log=None, height=None):
     else:
         print(f'Driver {driver}-{version} not found.')
 
-
 # Create the argument parser
 parser = argparse.ArgumentParser(description="Driver Program Runner")
 
@@ -35,3 +35,7 @@ args = parser.parse_args()
 
 # Process the chosen driver program
 process_driver(args.driver, args.version, args.plot, args.log, args.height)
+
+# Add the infinite loop to keep the script running
+while True:
+    time.sleep(1)  # Keep the script running indefinitely
