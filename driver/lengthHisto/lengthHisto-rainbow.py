@@ -1,7 +1,11 @@
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+
 import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 
+import numpy as np
 import os
 import argparse
 
@@ -9,21 +13,9 @@ import argparse
 output_directory = 'generated'
 os.makedirs(output_directory, exist_ok=True)
 
-def isPrime(n):
-    if n <= 1:
-        return False
-    elif n <= 3:
-        return True
-    elif n % 2 == 0 or n % 3 == 0:
-        return False
-    i = 5
-    while i * i <= n:
-        if n % i == 0 or n % (i + 2) == 0:
-            return False
-        i += 6
-    return True
-
 plotlist = []
+
+path_lengths = []
 
 # Create the argument parser
 parser = argparse.ArgumentParser(description='Driver Program')
@@ -37,9 +29,6 @@ args = parser.parse_args()
 # Parse the plot argument into a list
 plotlist = eval(args.plot)
 
-
-path_lengths = []
-prime_path_lengths = []
 
 def get_path_length(n):
     count = 1
@@ -55,8 +44,8 @@ for seed in plotlist:
     path_length = get_path_length(seed)
     path_lengths.append(path_length)
 
-    if isPrime(seed):
-        prime_path_lengths.append(path_length)
+def get_cmap(n, name='hsv'):
+    return plt.cm.get_cmap(name, n)
 
 # Adjust the bin edges by adding an offset of 0.5
 # the -2 and +2 is because the range function isn't inclusive so we have to grab the edges manually
@@ -73,11 +62,6 @@ print("Edge size: " + str(bin_pixel_sizes))
 
 plt.close()  # Close the previous figure
 
-plt.figure(figsize=(10, 5))
-plt.xlabel('Path length')
-plt.ylabel('Frequency')
-plt.title('Hailstone Path Lengths')
-
 # Calculate the range of all the bins
 bin_range = max(path_lengths) - min(path_lengths)
 
@@ -87,11 +71,23 @@ border_width = bin_range * 0.02
 plt.xlim(left=min(path_lengths) - border_width)
 plt.xlim(right=max(path_lengths) + border_width)
 
+PLlength = len(plotlist)
+cmap = get_cmap(PLlength + 1)
 
-# create the actual histogram
-# Create the actual histograms
-plt.hist(path_lengths, bins=bins, color='blue', edgecolor='black', linewidth=bin_pixel_sizes, alpha=0.7)
-plt.hist(prime_path_lengths, bins=bins, color='red', edgecolor='black', linewidth=bin_pixel_sizes, alpha=0.7)
+# Create a new figure with adjusted figsize
+fig, ax = plt.subplots(figsize=(10, 5))
+
+# Calculate the histogram values for each bin
+hist, bin_edges = np.histogram(path_lengths, bins=bins)
+
+# Assign a different color to each bin
+for i in range(len(bins) - 1):
+    color = cmap(i / (len(bins) - 1))  # Normalize bin index to range [0, 1]
+    ax.bar(bin_edges[i], hist[i], width=bin_edges[i + 1] - bin_edges[i], color=color, edgecolor='black', linewidth=bin_pixel_sizes, alpha=0.7)
+
+plt.xlabel('Path length')
+plt.ylabel('Frequency')
+plt.title('Hailstone Path Lengths')
 
 txt = "Made by Chicky"
 plt.figtext(0.075, 0.065, txt, wrap=True, horizontalalignment='center', fontsize=8, color="grey")

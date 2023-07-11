@@ -14,9 +14,24 @@ import argparse
 output_directory = 'generated'
 os.makedirs(output_directory, exist_ok=True)
 
+
 plt.xlabel('Number of iterations')
 plt.ylabel('Number value')
 plt.title('Hailstone numbers comparison')
+
+def isPrime(n):
+    if n <= 1:
+        return False
+    elif n <= 3:
+        return True
+    elif n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
 
 maxlist = [[], []]
 
@@ -45,7 +60,6 @@ PLlength = len(plotlist)
 
 def plot(n, color):
     # count starts at 0 because the beginning number is not an iteration
-    # unless we're logging the x scale
     count = 0
     Arr = [[0], [n]]
     
@@ -72,8 +86,17 @@ def plot(n, color):
     maxlist[1].append(max(y))
 
 def plotall():
+    color = "blue"
+    tmp = []
     for k in range(PLlength):
-        plot(plotlist[k], 'blue')
+        if isPrime(plotlist[k]):
+            tmp.append(plotlist[k])
+        else:
+            plot(plotlist[k], color)
+    
+    for j in range(len(tmp)):
+        plot(tmp[j], "red")
+
 
     x_min = min(maxlist[0])
     print("isLog: " + str(isLog) + ", x_min: " + str(x_min))

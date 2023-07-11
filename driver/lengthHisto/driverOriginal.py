@@ -1,45 +1,15 @@
+# ORIGINAL, DO NOT MODIFY
+# OUTPUTS PHOTO TO CURRENT DIR
+
 import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 
-import os
-import argparse
-
-# Create a directory for saving figures if it doesn't exist
-output_directory = 'generated'
-os.makedirs(output_directory, exist_ok=True)
-
-def isPrime(n):
-    if n <= 1:
-        return False
-    elif n <= 3:
-        return True
-    elif n % 2 == 0 or n % 3 == 0:
-        return False
-    i = 5
-    while i * i <= n:
-        if n % i == 0 or n % (i + 2) == 0:
-            return False
-        i += 6
-    return True
 
 plotlist = []
 
-# Create the argument parser
-parser = argparse.ArgumentParser(description='Driver Program')
-
-# Add an optional option for the plot argument
-parser.add_argument('-p', '--plot', help='List of values for plotting', default='list(range(1, 1001))')
-
-# Parse the command-line arguments
-args = parser.parse_args()
-
-# Parse the plot argument into a list
-plotlist = eval(args.plot)
-
-
 path_lengths = []
-prime_path_lengths = []
+
 
 def get_path_length(n):
     count = 1
@@ -54,9 +24,6 @@ def get_path_length(n):
 for seed in plotlist:
     path_length = get_path_length(seed)
     path_lengths.append(path_length)
-
-    if isPrime(seed):
-        prime_path_lengths.append(path_length)
 
 # Adjust the bin edges by adding an offset of 0.5
 # the -2 and +2 is because the range function isn't inclusive so we have to grab the edges manually
@@ -73,7 +40,6 @@ print("Edge size: " + str(bin_pixel_sizes))
 
 plt.close()  # Close the previous figure
 
-plt.figure(figsize=(10, 5))
 plt.xlabel('Path length')
 plt.ylabel('Frequency')
 plt.title('Hailstone Path Lengths')
@@ -89,18 +55,15 @@ plt.xlim(right=max(path_lengths) + border_width)
 
 
 # create the actual histogram
-# Create the actual histograms
 plt.hist(path_lengths, bins=bins, color='blue', edgecolor='black', linewidth=bin_pixel_sizes, alpha=0.7)
-plt.hist(prime_path_lengths, bins=bins, color='red', edgecolor='black', linewidth=bin_pixel_sizes, alpha=0.7)
+
 
 txt = "Made by Chicky"
-plt.figtext(0.075, 0.065, txt, wrap=True, horizontalalignment='center', fontsize=8, color="grey")
+plt.figtext(0.05, 0.03, txt, wrap=True, horizontalalignment='center', fontsize=8, color="grey")
 
 plt.tight_layout()
 
 dpi = 500
 plt.subplots_adjust(left=0.15, bottom=0.1)
 
-# Save the figure in the specified directory
-filename = os.path.join(output_directory, 'pathLen.png')
-plt.savefig(filename, dpi=dpi)
+plt.savefig('pathLen.png', dpi=dpi)

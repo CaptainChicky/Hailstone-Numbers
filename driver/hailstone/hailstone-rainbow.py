@@ -1,6 +1,7 @@
 import math
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning)
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 import matplotlib as mpl
 mpl.use('Agg')
@@ -14,9 +15,13 @@ import argparse
 output_directory = 'generated'
 os.makedirs(output_directory, exist_ok=True)
 
+
 plt.xlabel('Number of iterations')
 plt.ylabel('Number value')
 plt.title('Hailstone numbers comparison')
+
+def get_cmap(n, name='hsv'):
+    return plt.cm.get_cmap(name, n)
 
 maxlist = [[], []]
 
@@ -45,7 +50,6 @@ PLlength = len(plotlist)
 
 def plot(n, color):
     # count starts at 0 because the beginning number is not an iteration
-    # unless we're logging the x scale
     count = 0
     Arr = [[0], [n]]
     
@@ -71,9 +75,11 @@ def plot(n, color):
     maxlist[0].append(max(x))
     maxlist[1].append(max(y))
 
-def plotall():
+def plotall(colorparse):
+    cmap = get_cmap(colorparse + 1)
+  
     for k in range(PLlength):
-        plot(plotlist[k], 'blue')
+        plot(plotlist[k], cmap(k + 1))
 
     x_min = min(maxlist[0])
     print("isLog: " + str(isLog) + ", x_min: " + str(x_min))
@@ -114,7 +120,7 @@ def plotall():
 
 
 
-plotall()
+plotall(PLlength)
 
 txt = "Made by Chicky"
 #first num is percent on x axis, second is y

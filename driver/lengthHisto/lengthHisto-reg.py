@@ -2,13 +2,29 @@ import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 
-plt.xlabel('Path length')
-plt.ylabel('Frequency')
-plt.title('Hailstone Path Lengths')
+import os
+import argparse
 
-plotlist = list(range(1, 1001))
+# Create a directory for saving figures if it doesn't exist
+output_directory = 'generated'
+os.makedirs(output_directory, exist_ok=True)
+
+plotlist = []
 
 path_lengths = []
+
+# Create the argument parser
+parser = argparse.ArgumentParser(description='Driver Program')
+
+# Add an optional option for the plot argument
+parser.add_argument('-p', '--plot', help='List of values for plotting', default='list(range(1, 1001))')
+
+# Parse the command-line arguments
+args = parser.parse_args()
+
+# Parse the plot argument into a list
+plotlist = eval(args.plot)
+
 
 def get_path_length(n):
     count = 1
@@ -35,10 +51,14 @@ bin_heights, bin_edges, _ = plt.hist(path_lengths, bins=bins, alpha=0)
 fig = plt.gcf()
 fig_size = fig.get_size_inches() * fig.dpi
 bin_pixel_sizes = (fig_size[0] / len(bin_edges)) * 0.03  # 3% of the bin's pixel size
-print(bin_pixel_sizes)
+print("Edge size: " + str(bin_pixel_sizes))
 
 plt.close()  # Close the previous figure
 
+plt.figure(figsize=(10, 5))
+plt.xlabel('Path length')
+plt.ylabel('Frequency')
+plt.title('Hailstone Path Lengths')
 
 # Calculate the range of all the bins
 bin_range = max(path_lengths) - min(path_lengths)
@@ -55,11 +75,13 @@ plt.hist(path_lengths, bins=bins, color='blue', edgecolor='black', linewidth=bin
 
 
 txt = "Made by Chicky"
-plt.figtext(0.05, 0.03, txt, wrap=True, horizontalalignment='center', fontsize=8, color="grey")
+plt.figtext(0.075, 0.065, txt, wrap=True, horizontalalignment='center', fontsize=8, color="grey")
 
 plt.tight_layout()
 
 dpi = 500
 plt.subplots_adjust(left=0.15, bottom=0.1)
 
-plt.savefig('pathLengthHistogram.png', dpi=dpi)
+# Save the figure in the specified directory
+filename = os.path.join(output_directory, 'pathLen.png')
+plt.savefig(filename, dpi=dpi)

@@ -1,64 +1,46 @@
-# ORIGINAL, DO NOT MODIFY
-# OUTPUTS PHOTO TO CURRENT DIR
-
 import math
 import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 
-plt.xlabel('Seed number')
-plt.ylabel('Number of iterations')
-plt.title('Hailstone path length')
-
-def isPrime(n):
-    if n <= 1:
-        return False
-    elif n <= 3:
-        return True
-    elif n % 2 == 0 or n % 3 == 0:
-        return False
-    i = 5
-    while i * i <= n:
-        if n % i == 0 or n % (i + 2) == 0:
-            return False
-        i += 6
-    return True
-    
+# fix and definetely use log plot later lmao
+plt.xlabel('Seed value')
+plt.ylabel('Maximum value')
+plt.title('Hailstone maximums')
+plt.figure(figsize=(5, 20))
 
 maxlist = []
 
+plotlist = []
+
 isLog = 0
 
-plotlist = list(range(1, 101))
 
 PLlength = len(plotlist)
 
-def PlotSeed(n, color):
-    # count starts at 1 because the seed is part of the sequence
-    count = 1
+def plot(n, color):
+    Arr = [n]
     originalN = n
     while n > 1:
         if n % 2 == 0:
             n = n / 2
         else:
             n = ((n * 3) + 1)
-        count += 1
+        Arr.append(n)
 
-    maxlist.append(count)
-    plt.plot(originalN, count, '.', color=color)
+    x = originalN
+    y = max(Arr)
 
-# primes overlayed on top of non-primes
-def plotall():
-    color = "blue"
-    tmp = []
-    for k in range(PLlength):
-        if isPrime(plotlist[k]):
-            tmp.append(plotlist[k])
-        else:
-            PlotSeed(plotlist[k], color)
+    # for debug, remove later
+    print(x, y)
     
-    for j in range(len(tmp)):
-        PlotSeed(tmp[j], "red")
+    maxlist.append(y)
+
+    plt.plot(x, y, '.', color=color)
+
+def plotall():
+    for k in range(PLlength):
+        plot(plotlist[k], 'blue')
 
     # margins with this is more complicated
     # we calculate the margins as a percentage of the total range
@@ -77,6 +59,8 @@ def plotall():
         plt.ylim(bottom=y_min - y_margin)
         # log margins bruh
         y_margin_log = (math.log10(y_max) - math.log10(y_min)) * 0.03
+        if y_min == y_max:
+            y_margin_log = 0.03
         plt.ylim(top=10 ** (math.log10(y_max) + y_margin_log))
     elif isLog == 2:
         plt.xscale('log')
@@ -87,6 +71,8 @@ def plotall():
         plt.xlim(right=10 ** (math.log10(x_max) + x_margin_log))
 
         y_margin_log = (math.log10(y_max) - math.log10(y_min)) * 0.03
+        if y_min == y_max:
+            y_margin_log = 0.03
         plt.ylim(bottom=y_min - y_margin)
         plt.ylim(top=10 ** (math.log10(y_max) + y_margin_log))
     else:
@@ -94,8 +80,8 @@ def plotall():
         plt.xlim(right=x_max + x_margin)
         plt.ylim(bottom=y_min - y_margin)
         plt.ylim(top=y_max + y_margin)
-
 plotall()
+
 
 txt = "Made by Chicky"
 #first num is percent on x axis, second is y
@@ -108,8 +94,7 @@ plt.figtext(0.05,
             color="grey")
 
 plt.tight_layout()
-
-dpi = 500
+ 
 plt.subplots_adjust(left=0.15, bottom=0.1)
 
-plt.savefig("seedLen.png", dpi=dpi)
+plt.savefig("maxgraph.pdf", format='pdf')
