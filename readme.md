@@ -139,6 +139,12 @@ There are 5 possible flags, with 3 being optional.
                                                                                         This flag exists on all drivers except lengthHisto. If 
                                                                                         absent, a given driver program will use the largest number
                                                                                         on the y axis in the plot as the height.
+
+
+    -h, --help                          Optional.                                       This prints out the help message, which is a short 
+                                        Print the help message.                         description of any flags inputted with this command. 
+                                                                                        If this flag is present, the program will not run. This 
+                                                                                        flag is available on all drivers.
                                                                                                                    
 
 Hopefully that was clear enough. If not, I will provide some examples below.  
