@@ -21,10 +21,6 @@ os.makedirs(output_directory, exist_ok=True)
 # make sure variable is just an integer
 n = 1
 
-plt.xlabel('Number of iterations')
-plt.ylabel('Number value')
-plt.title('Hailstone numbers: number %i' % n)
-
 def get_cmap(n, name='hsv'):
     '''Returns a function that maps each index in 0, 1, ..., n-1 to a distinct 
     RGB color; the keyword argument name must be a standard mpl colormap name.'''
@@ -49,6 +45,12 @@ args = parser.parse_args()
 n = eval(args.plot)
 isLog = args.log
 height = args.height
+
+
+
+plt.xlabel('Number of iterations')
+plt.ylabel('Number value')
+plt.title('Hailstone numbers: number %i' % n)
 
 # conut starts at 0 because the seed is not an iteration
 count = 0

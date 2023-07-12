@@ -5,9 +5,9 @@ On a more serious note, let's talk about a different type of hailstone 😄, to 
 Good question. Let's find out!
 
 If you may recall, hailstones form in the upper part of a cumulonimbus, where the temperature is below freezing. The hailstone starts as a raindrop that freezes into a tiny droplet, and slowly grows as it is being tossed around in the updraft of the storm in an up and down motion. And, when it gets too heavy, it falls from the cloud onto your windshield.<br><br>
-<img src="./hailstoneformation.png" alt="Hailstone Formation" width="800px" height="auto"><br><br>
+<img src="./readme-images/hailstoneformation.png" alt="Hailstone Formation" width="800px" height="auto"><br><br>
 Now that you've had this refresher, take a look at the following path below.<br><br>
-<img src="./hailstone!.png" alt="Hailstone Sequence" width="800px" height="auto"><br><br>
+<img src="./readme-images/hailstone!.png" alt="Hailstone Sequence" width="800px" height="auto"><br><br>
 Doesn't this resemble the path a hailstone could take while it forms? It sure does! At least, it sort of does!  
 
 Now, you ask, what generated this path? Well, the path is just a connected sequence of numbers... Perhaps, you could call it a *hailstone* sequence, even? 😄 Indeed, the generator of this path is none other than the famous Collatz conjecture! 
@@ -162,34 +162,42 @@ Say we want a regular plot of the maximum height of hailstone sequences for all 
 
     python main.py -d maxHeight -v reg -l 2 -p "list(range(1, 10001))"
 
-If we want to plot a single hailstone sequence for the seed value 97, with log scaling on the y axis, we would do
+<img src="./readme-images/01.png" width="400px" height="auto"><br><br>
+If we want to plot a single hailstone sequence for the seed value 297, with log scaling on the y axis, we would do
 
-    python main.py -d hailstone -v single -l 1 -p "97"
+    python main.py -d hailstone -v single -l 1 -p "297"
 
+<img src="./readme-images/02.png" width="800px" height="auto"><br><br>
 Plotting the same thing as above but with the logarithm plot's linear regression slope subtracted from it is simply done by
 
-    python main.py -d hailstone -v single -l 3 -p "97"
+    python main.py -d hailstone -v single -l 3 -p "297"
 
-Comparing the hailstone sequences of "27" and "97" with regular scaling can be done with the following command
+<img src="./readme-images/03.png" width="800px" height="auto"><br><br>
+Comparing the hailstone sequences of "27" and "97" with regular scaling and rainbow color can be done with the following command
 
-    python main.py -d hailstone -v many -p "[27, 97]"
+    python main.py -d hailstone -v rainbow -p "[27, 97]"
 
+<img src="./readme-images/04.png" width="800px" height="auto"><br><br>
 If we want to make a rainbow hailstone sequence length histogram with the default plot, which is from 1 to 1000, we would do
 
     python main.py -d lengthHisto -v rainbow
 
+<img src="./readme-images/05.png" width="800px" height="auto"><br><br>
 Say we are interested in how the maximum values of seeds that are primes (we want the prime points to be visible and on top) behave, in particular from 5000 to 10000, with both axes being scaled logarithmically. We would do
 
     python main.py -d maxHeight -v primeTop -l 2 -p "list(range(5000, 10001))" 
 
+<img src="./readme-images/06.png" width="400px" height="auto"><br><br>
 If we want to view the same graph above but with a rainbow coloring, and a max height of 15000 (without log scaling on any axis), we would do
 
     python main.py -d maxHeight -v rainbow -l 0 -p "list(range(5000, 10001))" -ht 15000
 
+<img src="./readme-images/07.png" width="400px" height="auto"><br><br>
 If we want to see how the sequence lengths of seeds from 200 to 1200 behave with normal scaling and primes highlighted but not neccesarily on top, we would do 
 
     python main.py -d sequenceLen -v prime -p "list(range(200, 1201))"
 
+<img src="./readme-images/08.png" width="800px" height="auto"><br><br>
 
 Please note that I did not do any error checking for the flags. If you input an invalid flag or argument for the flag, the program will most likely error out, but in the chance that it works, then 🥴 bruh. Just follow the above docs properly.  
 
