@@ -1,7 +1,7 @@
 # Do you like Hailstones? 👀
-Well you're not alone! I also like hailstones, especially during stormchasing, because if you spot that nice green-hued hail core and don't leave immediately, your car windshield will get very nice spiderweb-like decorations 😶.  
+Well, you're not alone! I also like hailstones, especially during stormchasing, because if you spot that nice green-hued hail core and don't leave immediately, your car windshield will get very nice spiderweb-like decorations 😶.  
 
-On a more serious note, let's talk about a different type of hailstone 😄, to wit, the numerical kind! How do numbers relate to hailstones you may ask? 
+On a more serious note, let's talk about a different type of hailstone 😄, to wit, the numerical kind! How do numbers relate to hailstones, you may ask? 
 Good question. Let's find out!
 
 If you may recall, hailstones form in the upper part of a cumulonimbus, where the temperature is below freezing. The hailstone starts as a raindrop that freezes into a tiny droplet, and slowly grows as it is being tossed around in the updraft of the storm in an up and down motion. And, when it gets too heavy, it falls from the cloud onto your windshield.<br><br>
@@ -23,11 +23,11 @@ The *Collatz Conjecture*, also known as the *3n+1* problem, is a famous unsolved
 3. If *n* is odd, multiply it by 3 and add 1 to get *3n+1*.
 4. Repeat the process indefinitely for the resulting numbers.
 
-The Collatz Conjecture states that regardless of the initial value of *n*, this process will eventually reach *1*. More precisely, the process eventually will reach the cycle *4, 2, 1*, and continue indefinitely.  
+The Collatz Conjecture states that regardless of the initial value of *n*, this process will eventually reach *1*. More precisely, the process will eventually reach the cycle *4, 2, 1*, and continue indefinitely.  
 
 Sounds simple right? Well, at its crux, the process the conjecture is based around may very well be simple! But, as math has it, no matter how simple the root process may seem, the whole problem is a completely different story. As it turns out, this is a very hard conjecture to prove. It's so hard, as a matter of fact, that even now as of 2023, nobody has been able to prove it, meaning it's still an open problem in mathematics!  
 
-This isn't from a lack of trying either. Believe me when I tell you that people have brute forced numbers up to 2<sup>68</sup> and still haven't found a counterexample. That's a lot of numbers! Even Terence Tao, one of the most brilliant mathematicians of the 21st century, failed to prove it, though through his investigations, came quite close, being able to show that for "almost" every seed value, its Collatz sequence will eventually reach a value that is less than any well-behaved function that grows to infinity. The "almost" here means that as we take the ratio of seed values whos Collatz sequences don't reach a value that is less than a given well-behaved function that grows to infinity, versus those that do, this ratio approaches 0. Tao has remarked that "this is the closest anyone has come to proving the conjecture without actually proving it".  
+This isn't from a lack of trying either. Believe me when I tell you that people have brute forced numbers up to 2<sup>68</sup> and still haven't found a counterexample. That's a lot of numbers! Even Terence Tao, one of the most brilliant mathematicians of the 21st century, failed to prove it, though through his investigations, came quite close, being able to show that for "almost" every seed value, its Collatz sequence will eventually reach a value that is less than any well-behaved function that grows to infinity. The "almost" here means that as we take the ratio of seed values whose Collatz sequences don't reach a value that is less than a given well-behaved function that grows to infinity, versus those that do, this ratio approaches 0. Tao has remarked that "this is the closest anyone has come to proving the conjecture without actually proving it".  
 
 Fascinating stuff! 
 
@@ -35,7 +35,7 @@ Fascinating stuff!
 Now that we've had a brief introduction to the Collatz conjecture, let's talk about the project in this repo. The purpose of this project is to allow anyone to explore and analyze the patterns of hailstone sequences visually, which perhaps, in a rare moment of enlightenment, may allow someone to solve it 👀. 🥴 Just kidding, this is probably extremely unlikley lmao. Regardless, the visualization provided by this project should be quite intruiging. Anyhow, let's get started!
 
 ## Dependencies
-This project is a commandline python project, meaning you should have some for of terminal to run it, as well as python.   
+This project is a commandline python project, meaning you should have some form of terminal to run it, as well as python.   
 For python libraries, numpy, matplotlib, and scikit-learn are required. You can simply install them by doing
 
     pip install -r requirements.txt
@@ -52,7 +52,7 @@ There are 5 possible flags, with 3 being optional, along with the help flag.
     Flag                                Description                                     Details
 
     -d, --driver                        Required.                                       This specifies which driver program you want to 
-                                        Choose the driver program.                      run, with each option corresponding to a completley 
+                                        Choose the driver program.                      run, with each option corresponding to a completely 
                                                                                         different program.
 
                                                                                         There are 4 options: 
@@ -81,10 +81,9 @@ There are 5 possible flags, with 3 being optional, along with the help flag.
                                                                                         3. maxHeight   - prime, rainbow, primeTop, reg               
                                                                                         4. sequenceLen - prime, rainbow, primeTop, reg               
 
-
-    -p, --plot                          Optional.  
-                                        Choose what to plot.                            This specifies what the driver program should plot.
-                                                                                        You need to input a valid python expression for declaring
+                                                            
+    -p, --plot                          Optional.                                       This specifies what the driver program should plot.
+                                        Choose what to plot.                            You need to input a valid python expression for declaring
                                                                                         either a list or a number.
 
                                                                                         Here are possible ways to use this flag:
@@ -143,12 +142,11 @@ There are 5 possible flags, with 3 being optional, along with the help flag.
 
     -h, --help                          Optional.                                       This prints out the help message, which is a short 
                                         Print the help message.                         description of any flags inputted with this command. 
-                                                                                        If this flag is present, the program will not run. This 
-                                                                                        flag is available on all drivers.
+                                                                                        If this flag is present, the program will not run.
 
 
     -t, --timeout                       Optional.                                       This is specifically here for the docker image. Becuase 
-                                        Timeout the script.                             the main.py file exits when run, the docker container 
+                                        Timeout the script.                             the main.py file exits after running, the docker container 
                                                                                         will exit as well. This flag is here to prevent that. 
                                                                                         To use this properly, run the docker container first with
                                                                                         this flag on some external terminal, which will timeout the
@@ -193,7 +191,7 @@ If we want to view the same graph above but with a rainbow coloring, and a max h
     python main.py -d maxHeight -v rainbow -l 0 -p "list(range(5000, 10001))" -ht 15000
 
 <img src="./readme-images/07.png" width="400px" height="auto"><br><br>
-If we want to see how the sequence lengths of seeds from 200 to 1200 behave with normal scaling and primes highlighted but not neccesarily on top, we would do 
+If we want to see how the sequence lengths of seeds from 200 to 1200 behave with normal scaling and primes highlighted but not necessarily on top, we would do 
 
     python main.py -d sequenceLen -v prime -p "list(range(200, 1201))"
 
