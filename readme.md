@@ -35,8 +35,8 @@ Fascinating stuff!
 Now that we've had a brief introduction to the Collatz conjecture, let's talk about the project in this repo. The purpose of this project is to allow anyone to explore and analyze the patterns of hailstone sequences visually, which perhaps, in a rare moment of enlightenment, may allow someone to solve it 👀. 🥴 Just kidding, this is probably extremely unlikley lmao. Regardless, the visualization provided by this project should be quite intruiging. Anyhow, let's get started!
 
 ## Dependencies
-This project is a commandline python project, meaning you should have some form of terminal to run it, as well as python.   
-For python libraries, numpy, matplotlib, and scikit-learn are required. You can simply install them by doing
+This project is a commandline python project, meaning you should have some form of terminal to run it, as well as python.  
+For python libraries, numpy v1.25.1, matplotlib v3.7.2, and scikit-learn v1.3.0 are required. Note that one of the functions in the code (`cmap`) requires this specific version of matplotlib or lower, and I don't feel like updating the code to fix this if it breaks in the future lmao (a pull request to fix this is welcome!). So just install the older version of matplotlib kek. You can simply install them by doing
 
     pip install -r requirements.txt
 
@@ -87,12 +87,13 @@ There are 5 possible flags, with 3 being optional, along with the help flag.
                                                                                         either a list or a number.
 
                                                                                         Here are possible ways to use this flag:
-                                                                                        1. -p "list(range(a, b))"
-                                                                                        2. -p "[a, b, c]"
-                                                                                        3. -p "a" 
+                                                                                        1. -p "list(range(a, b, c))"
+                                                                                        2. -p "list(range(a, b))"
+                                                                                        3. -p "[a, b, c]"
+                                                                                        4. -p "a" 
 
-                                                                                        You may use 1. and 2. for any driver except hailstone-single.
-                                                                                        You can only use 3. for hailstone-single.
+                                                                                        You may use 1., 2., and 3. for any driver except hailstone-single.
+                                                                                        You can only use 4. for hailstone-single.
                                                                                         
                                                                                         If absent, the driver program will plot the default plot.
                                                                                         Here are the default plots for each driver program:
@@ -196,6 +197,15 @@ If we want to see how the sequence lengths of seeds from 200 to 1200 behave with
     python main.py -d sequenceLen -v prime -p "list(range(200, 1201))"
 
 <img src="./readme-images/08.png" width="800px" height="auto"><br><br>
+Or, if we want to plot the maximum height of every *odd* number's hailstone sequence from 1 to 100000 with primes highlighted or highlighted and on top, we can do 
+    
+    python main.py -d maxHeight -v primeTop -l 2 -p "list(range(1, 100001, 2))"
+    
+    python main.py -d maxHeight -v prime -l 2 -p "list(range(1, 100001, 2))"
+
+<img src="./readme-images/09.png" width="400px" height="auto"><img src="./readme-images/10.png" width="400px" height="auto"><br><br>
+
+Remember, the `-p` flag takes in any valid list generation python code, as long as it fits into one line :)
 
 Please note that I did not do any error checking for the flags. If you input an invalid flag or argument for the flag, the program will most likely error out, but in the chance that it works, then 🥴 bruh. Just follow the above docs properly.  
 
