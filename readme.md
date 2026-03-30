@@ -47,7 +47,7 @@ Currently, the project is run from the source python file, and it is a commandli
 
     python main.py
 
-There are 5 possible flags, with 3 being optional, along with the help flag.
+There are 4 possible flags, with 2 being optional, along with the help flag.
 
     Flag                                Description                                     Details
 
@@ -146,15 +146,6 @@ There are 5 possible flags, with 3 being optional, along with the help flag.
                                                                                         If this flag is present, the program will not run.
 
 
-    -t, --timeout                       Optional.                                       This is specifically here for the docker image. Becuase 
-                                        Timeout the script.                             the main.py file exits after running, the docker container 
-                                                                                        will exit as well. This flag is here to prevent that. 
-                                                                                        To use this properly, run the docker container first with
-                                                                                        this flag on some external terminal, which will timeout the
-                                                                                        first instance of the script. This allows you to run additional
-                                                                                        instances of the script without the container exiting.
-                                                                                                                   
-
 Hopefully that was clear enough. If not, I will provide some examples below.  
 
 Say we want a regular plot of the maximum height of hailstone sequences for all seed values from 1 to 10000, with log scaling on both axes. We would do
@@ -220,6 +211,28 @@ You can find all the graphs produced by this program in the /generated/ folder f
     sequenceLen                         /generated/seedLen.png
 
 Note that all driver programs except maxHeight will output a .png file. maxHeight will output a .pdf file because the scale of the graph is too large for matplotlib to put into a .png file.
+
+## Docker
+A Docker image is available if you don't want to install the dependencies locally.
+
+**One-shot run** (runs the default plot and exits):
+
+    docker run hailstone-numbers:v1.2
+
+**Interactive mode** (drop into a shell and run as many plots as you want):
+
+    docker run -it hailstone-numbers:v1.2 /bin/bash
+
+This gives you a terminal inside the container. From there, just run `python main.py` with whatever flags you need:
+
+    root@abc123:/app$ python main.py -d maxHeight -v reg -l 2 -p "list(range(1, 10001))"
+    root@abc123:/app$ python main.py -d hailstone -v rainbow -p "[27, 97]"
+
+Type `exit` when you're done, and the container stops.
+
+To build the image yourself, run this from the root of the repo:
+
+    docker build -t hailstone-numbers:v1.2 .
 
 # Closing Remarks
 This program is very noobishly written so expect bugs ig. If you find them, please open an issue so I can try to fix it lmao. Regardless, I hope you have fun with this and find some interesting patterns in the data. You're also free to modify the code to your liking to do things like highlight certain types of numbers or whatnot. If you do, feel free to make a pull request to add to it.  

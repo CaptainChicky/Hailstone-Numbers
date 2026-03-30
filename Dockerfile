@@ -1,7 +1,11 @@
-FROM python:3.11.4
+FROM python:3.11-slim
+
 WORKDIR /app
+
 COPY requirements.txt /app/
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
 COPY . /app/
-CMD ["python", "main.py", "-d", "hailstone", "-v", "single", "-p", "27", "-l", "0", "-t"]
-# this will timeout the first script so you can run others without the --timeout flag
+
+CMD ["python", "main.py", "-d", "hailstone", "-v", "single", "-p", "27", "-l", "0"]
+# For interactive use: docker run -it hailstone-numbers /bin/bash
