@@ -219,11 +219,11 @@ A Docker image is available if you don't want to install the dependencies locall
 
 **One-shot run** (runs the default plot and exits):
 
-    docker run hailstone-numbers:v1.2
+    docker run -v C:\path\you\want\the\plots:/app/generated hailstone-numbers:v[version]
 
 **Interactive mode** (drop into a shell and run as many plots as you want):
 
-    docker run -it hailstone-numbers:v1.2 /bin/bash
+    docker run -it -v C:\path\you\want\the\plots:/app/generated hailstone-numbers:v[version] /bin/bash
 
 This gives you a terminal inside the container. From there, just run `python main.py` with whatever flags you need:
 
@@ -234,7 +234,15 @@ Type `exit` when you're done, and the container stops.
 
 To build the image yourself, run this from the root of the repo:
 
-    docker build -t hailstone-numbers:v1.2 .
+    docker build -t hailstone-numbers:v[version] .
+
+The version is a tag that you use to differentiate between different versions of the image. You can choose any tag you want, but the way I'm doing it (and hence the recommended way) is v1.0, v1.1, v1.2, &c, so if the current releases page has v1.2 as the latest version, you can tag your new image as v1.2 if you are self-compiling, or v1.3 if you are modifying the code and want to differentiate your new version from the latest release. An example of building the image with a tag is
+
+    docker build -t hailstone-numbers:v1.3 .
+
+or running would be 
+
+    docker run -v C:\path\you\want\the\plots:/app/generated hailstone-numbers:v1.3
 
 # Closing Remarks
 This program is very noobishly written so expect bugs ig. If you find them, please open an issue so I can try to fix it lmao. Regardless, I hope you have fun with this and find some interesting patterns in the data. You're also free to modify the code to your liking to do things like highlight certain types of numbers or whatnot. If you do, feel free to make a pull request to add to it.  
