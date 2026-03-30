@@ -36,7 +36,7 @@ Now that we've had a brief introduction to the Collatz conjecture, let's talk ab
 
 ## Dependencies
 This project is a commandline python project, meaning you should have some form of terminal to run it, as well as python.  
-For python libraries, numpy v1.25.1, matplotlib v3.7.2, and scikit-learn v1.3.0 are required. Note that one of the functions in the code (`cmap`) requires this specific version of matplotlib or lower, and I don't feel like updating the code to fix this if it breaks in the future lmao (a pull request to fix this is welcome!). So just install the older version of matplotlib kek. You can simply install them by doing
+For python libraries, numpy, matplotlib, and scikit-learn are required. You can simply install them by doing
 
     pip install -r requirements.txt
 

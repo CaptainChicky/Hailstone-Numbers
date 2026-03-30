@@ -6,10 +6,10 @@ import os
 # Function to process and run the chosen driver program
 def process_driver(driver, version, plot=None, log=None, height=None):
     """Process and run the chosen driver program."""
-    driver_path = f"driver/{driver}/{driver}-{version}.py"
+    driver_path = f"driver/{driver}.py"
     if os.path.exists(driver_path):
         print(f"Running {driver}-{version}...")
-        command = [sys.executable, driver_path]
+        command = [sys.executable, driver_path, "-v", version]
         if plot is not None:
             command += ["-p", plot]
         if log is not None:
