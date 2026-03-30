@@ -213,7 +213,9 @@ You can find all the graphs produced by this program in the /generated/ folder f
 Note that all driver programs except maxHeight will output a .png file. maxHeight will output a .pdf file because the scale of the graph is too large for matplotlib to put into a .png file.
 
 ## Docker
-A Docker image is available if you don't want to install the dependencies locally.
+A Docker image is available if you don't want to install the dependencies locally. Download `hailstone-numbers.tar` from the releases page, then load it:
+
+    docker load -i hailstone-numbers.tar
 
 **One-shot run** (runs the default plot and exits):
 
