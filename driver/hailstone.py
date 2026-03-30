@@ -8,7 +8,6 @@ import math
 import argparse
 
 import numpy as np
-from sklearn.linear_model import LinearRegression
 
 sys.path.insert(0, os.path.dirname(__file__))
 from utils import is_prime, get_cmap, setup_output, save_figure
@@ -81,16 +80,14 @@ if version == "single":
 
     if isLog == 3:
         # Perform linear regression
-        X = np.arange(len(log_arr)).reshape(-1, 1)
-        regressor = LinearRegression()
-        regressor.fit(X, log_arr)
+        X = np.arange(len(log_arr))
+        slope, _ = np.polyfit(X, log_arr, 1)
 
         # Get the slope of the linear regression
-        slope = regressor.coef_[0]
         print("Linear Regression Slope: %f" % slope)
 
         # Create a new dataset by subtracting the slope of the linear regression
-        noLog_dataset = log_arr - slope * X.flatten()
+        noLog_dataset = log_arr - slope * X
 
     if isLog == 3:
         plt.plot(x, noLog_dataset, "k,-", linewidth=0.9)

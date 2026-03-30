@@ -36,7 +36,7 @@ Now that we've had a brief introduction to the Collatz conjecture, let's talk ab
 
 ## Dependencies
 This project is a commandline python project, meaning you should have some form of terminal to run it, as well as python.  
-For python libraries, numpy, matplotlib, and scikit-learn are required. You can simply install them by doing
+For python libraries, numpy and matplotlib are required. You can simply install them by doing
 
     pip install -r requirements.txt
 

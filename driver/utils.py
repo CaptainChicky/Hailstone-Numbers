@@ -1,6 +1,5 @@
 """Shared utilities for Collatz/hailstone visualization drivers."""
 
-import math
 import warnings
 
 warnings.filterwarnings("ignore", category=UserWarning)
@@ -12,15 +11,6 @@ mpl.use("Agg")
 import matplotlib.pyplot as plt
 
 import os
-
-
-def collatz_sequence(n):
-    """Return the full Collatz sequence starting from n."""
-    seq = [n]
-    while n > 1:
-        n = n / 2 if n % 2 == 0 else n * 3 + 1
-        seq.append(n)
-    return seq
 
 
 def is_prime(n):
